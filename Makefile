@@ -2,7 +2,7 @@ CC = cc
 LDFLAGS = -lX11
 
 BIN = khat-xlib
-OBJ = main.o create_main_window.o
+OBJ = main.o
 
 all: $(BIN)
 $(BIN): $(OBJ)

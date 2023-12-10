@@ -20,8 +20,6 @@
 #include <X11/Xlib.h>
 #include <X11/keysym.h>
 
-#include "window.h"
-
 int
 main(void)
 {
@@ -38,7 +36,10 @@ main(void)
 
 	white = WhitePixel(dpy, screen);
 
-	main_window = create_main_window(dpy, screen, white);
+	main_window = XCreateSimpleWindow(dpy, DefaultRootWindow(dpy),
+			0, 0, 500, 300,
+			0, white,
+			white);
 	XMapWindow(dpy, main_window);
 	XFlush(dpy);
 
