@@ -2,9 +2,12 @@ CC = cc
 LDFLAGS = -lX11
 
 BIN = khat-xlib
-OBJ = main.o
+OBJ = main.o event_loop.o
 
 all: $(BIN)
+$(OBJ): event.h
+
+
 $(BIN): $(OBJ)
 	$(CC) -o $@ $(OBJ) $(LDFLAGS)
 

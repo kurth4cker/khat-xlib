@@ -18,7 +18,8 @@
 #include <assert.h>
 #include <unistd.h>
 #include <X11/Xlib.h>
-#include <X11/keysym.h>
+
+#include "event.h"
 
 int
 main(void)
@@ -43,21 +44,7 @@ main(void)
 	XMapWindow(dpy, main_window);
 	XFlush(dpy);
 
-	XSelectInput(dpy, main_window, ExposureMask | KeyPressMask
-			| ButtonPressMask | Button1MotionMask
-			| Button2MotionMask | StructureNotifyMask);
-
-	int done = 0;
-	XEvent event;
-	while (!done) {
-		XNextEvent(dpy, &event);
-		switch (event.type) {
-		case KeyPress:
-			if (XLookupKeysym(&event.xkey, 0) == XK_q)
-				done = 1;
-			break;
-		}
-	}
+	event_loop(dpy, main_window);
 
 	XCloseDisplay(dpy);
 }
