@@ -1,4 +1,6 @@
-/* See file COPYING for license instructions */
+/* Copyright (c) 2023 Kurth4cker <kurth4cker@gmail.com>
+ * Licensed under terms of GPLv3+. See file COPYING for details.
+ */
 
 #include <X11/Xlib.h>
 #include <X11/keysym.h>
