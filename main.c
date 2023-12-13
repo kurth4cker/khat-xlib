@@ -3,35 +3,26 @@
  */
 
 #include <assert.h>
+#include <stdio.h>
 #include <unistd.h>
 #include <X11/Xlib.h>
 
+#include "app.h"
 #include "event.h"
 
 int
 main(void)
 {
-	Display *dpy;
-	Window main_window;
-	unsigned long white;
-	int screen = -1;
+	struct app app;
 
-	dpy = XOpenDisplay(NULL);
-	assert(dpy != NULL);
+	if (!app_init(&app, NULL) && !app.display) {
+		fprintf(stderr, "can't open display\n");
+		return 1;
+	}
+	XMapWindow(app.display, app.window);
+	XFlush(app.display);
 
-	screen = DefaultScreen(dpy);
-	assert(screen >= 0);
+	event_loop(app.display, app.window);
 
-	white = WhitePixel(dpy, screen);
-
-	main_window = XCreateSimpleWindow(dpy, DefaultRootWindow(dpy),
-			0, 0, 500, 300,
-			0, white,
-			white);
-	XMapWindow(dpy, main_window);
-	XFlush(dpy);
-
-	event_loop(dpy, main_window);
-
-	XCloseDisplay(dpy);
+	app_end(&app);
 }
