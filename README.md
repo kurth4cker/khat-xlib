@@ -1,7 +1,12 @@
 # khat-xlib
 
-Simple drawing program with Xlib 
+Simple drawing program with Xlib.
 
-# License
+## Compiling
 
-This project is licensed under the terms of GPLv3+ license. See COPYING for more details.
+Run 'make' for compile. Only libX11 is required.
+
+## License
+
+This project is licensed under the terms of GPLv3+ license. See file COPYING
+for more details.
