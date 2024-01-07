@@ -7,6 +7,21 @@
 
 #include "event.h"
 
+enum {
+	EVENT_QUIT,
+	EVENT_CONT,
+};
+
+static int
+key_press(KeySym key)
+{
+	switch (key) {
+	case XK_q:
+		return EVENT_QUIT;
+	};
+	return EVENT_CONT;
+}
+
 void
 event_loop(Display *dpy, Window win)
 {
@@ -19,7 +34,7 @@ event_loop(Display *dpy, Window win)
 		switch (event.type) {
 		case KeyPress:
 			KeySym key = XLookupKeysym(&event.xkey, 0);
-			if (key == XK_q)
+			if (key_press(key) == EVENT_QUIT)
 				return;
 			break;
 		}
