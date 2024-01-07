@@ -7,7 +7,7 @@
 #include "app.h"
 
 int
-app_init(struct app *app, const char *display_name)
+app_open(struct app *app, const char *display_name)
 {
 	app->display = XOpenDisplay(display_name);
 	if (!app->display)
@@ -26,7 +26,7 @@ app_init(struct app *app, const char *display_name)
 }
 
 void
-app_end(struct app *app)
+app_close(struct app *app)
 {
 	XDestroyWindow(app->display, app->window);
 	XCloseDisplay(app->display);

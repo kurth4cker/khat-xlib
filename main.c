@@ -15,7 +15,7 @@ main(void)
 {
 	struct app app;
 
-	if (!app_init(&app, NULL) && !app.display) {
+	if (!app_open(&app, NULL) && !app.display) {
 		fprintf(stderr, "can't open display\n");
 		return 1;
 	}
@@ -24,5 +24,5 @@ main(void)
 
 	event_loop(app.display, app.window);
 
-	app_end(&app);
+	app_close(&app);
 }

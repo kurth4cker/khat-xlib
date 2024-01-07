@@ -9,7 +9,7 @@ struct app {
 	Window window;
 };
 
-int app_init(struct app *, const char *);
-void app_end(struct app *);
+int app_open(struct app *, const char *);
+void app_close(struct app *);
 
 #endif /* APP_H */
