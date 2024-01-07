@@ -24,3 +24,10 @@ app_init(struct app *app, const char *display_name)
 
 	return 1;
 }
+
+void
+app_end(struct app *app)
+{
+	XDestroyWindow(app->display, app->window);
+	XCloseDisplay(app->display);
+}
